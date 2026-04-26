@@ -1,0 +1,38 @@
+# Virtual environments
+venv/
+.env/
+.conda/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Dataset (DO NOT upload)
+dataset/train/
+dataset/val/
+dataset/test/
+dataset/**/images/
+dataset/**/masks/
+*.zip
+
+# Model weights
+*.pt
+*.pth
+*.ckpt
+
+# Logs & outputs
+runs/
+logs/
+outputs/
+inference_results/
+inference_results_v2/
+distribution_results.txt
+weights_output.txt
+
+# Data (too large for GitHub)
+data/
+
+# OS / IDE
+.vscode/
+.idea/
+.DS_Store
