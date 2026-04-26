@@ -1,4 +1,4 @@
-# 🌿 Off-Road Terrain Semantic Segmentation
+# Off-Road Terrain Semantic Segmentation
 
 > A production-grade semantic segmentation pipeline for autonomous off-road perception using **DeepLabV3+** with a **ResNet101** backbone. Achieves **33.3% mIoU** and **43.2% Dice** across 10 terrain classes under extreme class imbalance.
 
@@ -8,7 +8,7 @@
 
 ---
 
-## 📸 Interactive Dashboard
+## Interactive Dashboard
 
 A Streamlit-powered dashboard for real-time inference and visualization:
 
@@ -26,7 +26,7 @@ streamlit run app.py
 
 ---
 
-## 🎯 Segmentation Results
+## Segmentation Results
 
 | Original Image | Predicted Mask | Overlay |
 |:-:|:-:|:-:|
@@ -38,7 +38,7 @@ streamlit run app.py
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ### Model: DeepLabV3+
 
@@ -85,7 +85,7 @@ model = smp.DeepLabV3Plus(
 
 ---
 
-## 🔥 Loss Functions
+## Loss Functions
 
 We use a **4-component Combined Loss** designed to tackle extreme class imbalance:
 
@@ -115,7 +115,7 @@ Sky:              1.0   ←─ Dominant (down-weighted)
 
 ---
 
-## 📊 Evaluation Metrics
+## Evaluation Metrics
 
 Two primary metrics are tracked in real-time during training:
 
@@ -145,33 +145,33 @@ IoU = |Prediction ∩ Ground Truth| / |Prediction ∪ Ground Truth|
 
 | Class | Dice Score | Presence in Dataset |
 |:---|:---|:---|
-| 🌤️ Sky | ~78% | 100% of images |
-| 🌾 Dry Grass | ~65% | 100% of images |
-| 🏔️ Landscape | ~62% | 100% of images |
-| 🌲 Trees | ~48% | 98% of images |
-| 🪨 Rocks | ~20% | 100% of images |
-| 🌿 Lush Bushes | ~15% | 100% of images |
-| 🌸 Flowers | ~5% | 26% of images |
-| 🪵 Logs | ~3% | 6% of images |
+| Sky | ~78% | 100% of images |
+| Dry Grass | ~65% | 100% of images |
+| Landscape | ~62% | 100% of images |
+| Trees | ~48% | 98% of images |
+| Rocks | ~20% | 100% of images |
+| Lush Bushes | ~15% | 100% of images |
+| Flowers | ~5% | 26% of images |
+| Logs | ~3% | 6% of images |
 
 ---
 
-## 🗂️ Dataset: 10 Terrain Classes
+## Dataset: 10 Terrain Classes
 
 The dataset uses **uint16 segmentation masks** with the following pixel-value → class mapping:
 
 | Pixel Value | Class ID | Class Name | Color (RGB) |
 |:---:|:---:|:---|:---|
-| 100 | 0 | 🌲 Trees | `(34, 139, 34)` |
-| 200 | 1 | 🌿 Lush Bushes | `(0, 255, 0)` |
-| 300 | 2 | 🌾 Dry Grass | `(189, 183, 107)` |
-| 500 | 3 | 🍂 Dry Bushes | `(160, 82, 45)` |
-| 550 | 4 | 🪨 Ground Clutter | `(105, 105, 105)` |
-| 600 | 5 | 🌸 Flowers | `(255, 0, 255)` |
-| 700 | 6 | 🪵 Logs | `(139, 69, 19)` |
-| 800 | 7 | 🗿 Rocks | `(128, 128, 128)` |
-| 7100 | 8 | 🏔️ Landscape | `(210, 180, 140)` |
-| 10000 | 9 | 🌤️ Sky | `(135, 206, 235)` |
+| 100 | 0 | Trees | `(34, 139, 34)` |
+| 200 | 1 | Lush Bushes | `(0, 255, 0)` |
+| 300 | 2 | Dry Grass | `(189, 183, 107)` |
+| 500 | 3 | Dry Bushes | `(160, 82, 45)` |
+| 550 | 4 | Ground Clutter | `(105, 105, 105)` |
+| 600 | 5 | Flowers | `(255, 0, 255)` |
+| 700 | 6 | Logs | `(139, 69, 19)` |
+| 800 | 7 | Rocks | `(128, 128, 128)` |
+| 7100 | 8 | Landscape | `(210, 180, 140)` |
+| 10000 | 9 | Sky | `(135, 206, 235)` |
 
 ### Data Structure
 
@@ -187,11 +187,11 @@ data/
     └── Color_Images/     # Test images for inference
 ```
 
-> ⚠️ Dataset is not included due to GitHub size limits. Place your data following the structure above.
+> Dataset is not included due to GitHub size limits. Place your data following the structure above.
 
 ---
 
-## ⚙️ Training Pipeline
+## Training Pipeline
 
 ### Key Optimizations
 
@@ -237,7 +237,7 @@ NUM_WORKERS   = 4
 
 ---
 
-## 🐛 Critical Bug Fix: uint16 Mask Loading
+## Critical Bug Fix: uint16 Mask Loading
 
 The primary cause of the initial 10% IoU plateau was a **bit-depth corruption bug**.
 
@@ -245,15 +245,15 @@ The primary cause of the initial 10% IoU plateau was a **bit-depth corruption bu
 
 **Fix:**
 ```diff
-- mask = cv2.imread(self.masks[idx], 0)           # ❌ Truncates to uint8
-+ mask = cv2.imread(self.masks[idx], cv2.IMREAD_UNCHANGED)  # ✅ Preserves uint16
+- mask = cv2.imread(self.masks[idx], 0)           # Truncates to uint8
++ mask = cv2.imread(self.masks[idx], cv2.IMREAD_UNCHANGED)  # Preserves uint16
 ```
 
 **Impact:** IoU jumped from **10% → 25%** immediately after this fix.
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 offroad_segmentation/
@@ -297,7 +297,7 @@ offroad_segmentation/
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Environment Setup
 
@@ -346,7 +346,7 @@ streamlit run app.py
 
 ---
 
-## 📦 Requirements
+## Requirements
 
 ```
 torch
@@ -367,19 +367,19 @@ streamlit
 
 ---
 
-## 📈 Training History
+## Training History
 
 ```
-Epoch  1 | Train Loss: 4.2858 | Val IoU: 0.2248 | Val Dice: 0.2981  ✅ Saved
-Epoch  2 | Train Loss: 3.6891 | Val IoU: 0.2418 | Val Dice: 0.3186  ✅ Saved
-Epoch  3 | Train Loss: 3.5070 | Val IoU: 0.2552 | Val Dice: 0.3357  ✅ Saved
+Epoch  1 | Train Loss: 4.2858 | Val IoU: 0.2248 | Val Dice: 0.2981  Saved
+Epoch  2 | Train Loss: 3.6891 | Val IoU: 0.2418 | Val Dice: 0.3186  Saved
+Epoch  3 | Train Loss: 3.5070 | Val IoU: 0.2552 | Val Dice: 0.3357  Saved
   ...
 Epoch 50 | Train Loss: 2.5948 | Val IoU: 0.3326 | Val Dice: 0.4322
 ```
 
 ---
 
-## 🔮 Future Improvements
+## Future Improvements
 
 - **Higher Resolution**: Scale to 768×768 or 1024×1024 for finer boundary detection
 - **Pseudo-Labeling**: Use high-confidence predictions on unlabeled data
@@ -389,12 +389,12 @@ Epoch 50 | Train Loss: 2.5948 | Val IoU: 0.3326 | Val Dice: 0.4322
 
 ---
 
-## 👤 Author
+## Author
 
-**Nilesh Sahoo**
+**Taniya Sahoo**
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License.
