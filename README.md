@@ -391,7 +391,7 @@ Epoch 50 | Train Loss: 2.5948 | Val IoU: 0.3326 | Val Dice: 0.4322
 
 ## Author
 
-**Taniya Sahoo**
+**Taniya**
 
 ---
 
